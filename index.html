@@ -1,12 +1,71 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 <head>
-    <title>Gestão Imobiliária</title>
-    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Clientes - Imóveis</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Controle de Imóveis</h1>
-    <div id="imoveis-lista"></div>
+    <div class="container">
+        <h1>Cadastro de Clientes</h1>
+        
+        <form id="cadastroForm">
+            <div class="form-group">
+                <label for="nome">Nome Completo:</label>
+                <input type="text" id="nome" name="nome" required placeholder="Digite o nome completo do cliente">
+            </div>
+            
+            <div class="form-group">
+                <label for="whatsapp">WhatsApp:</label>
+                <input type="tel" id="whatsapp" name="whatsapp" required placeholder="(00) 00000-0000">
+            </div>
+            
+            <div class="form-group">
+                <label for="dataContato">Data de Contato:</label>
+                <input type="date" id="dataContato" name="dataContato" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="tipoImovel">Tipo de Imóvel Procurado:</label>
+                <select id="tipoImovel" name="tipoImovel" required>
+                    <option value="">Selecione o tipo de imóvel...</option>
+                    <option value="Casa">Casa</option>
+                    <option value="Apartamento">Apartamento</option>
+                    <option value="Terreno">Terreno</option>
+                    <option value="Sala Comercial">Sala Comercial</option>
+                    <option value="Galpão">Galpão</option>
+                    <option value="Chácara">Chácara</option>
+                    <option value="Fazenda">Fazenda</option>
+                    <option value="Cobertura">Cobertura</option>
+                    <option value="Kitnet">Kitnet</option>
+                    <option value="Outro">Outro</option>
+                </select>
+            </div>
+            
+            <button type="submit">Cadastrar Cliente</button>
+        </form>
+        
+        <div class="clientes-cadastrados">
+            <h2>Clientes Cadastrados</h2>
+            <table id="tabelaClientes">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>WhatsApp</th>
+                        <th>Data Contato</th>
+                        <th>Tipo de Imóvel</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Dados serão inseridos via JavaScript -->
+                </tbody>
+            </table>
+            <div id="semDados" class="no-data">Nenhum cliente cadastrado.</div>
+        </div>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>
