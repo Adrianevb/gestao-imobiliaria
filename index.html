@@ -1,71 +1,297 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro de Clientes - Imóveis</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cadastro de Clientes - Imóveis</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      margin: 0;
+      padding: 20px;
+      background-color: #f8f9fa;
+      color: #333;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+      margin-bottom: 30px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #3498db;
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: #2c3e50;
+    }
+    input[type="text"],
+    input[type="tel"],
+    input[type="date"],
+    select {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      box-sizing: border-box;
+      font-size: 16px;
+      transition: border 0.3s;
+    }
+    input:focus,
+    select:focus {
+      border-color: #3498db;
+      outline: none;
+      box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+    }
+    button {
+      background-color: #3498db;
+      color: white;
+      padding: 14px 20px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      width: 100%;
+      font-size: 16px;
+      font-weight: 600;
+      transition: background-color 0.3s;
+      margin-top: 10px;
+    }
+    button:hover {
+      background-color: #2980b9;
+    }
+    .clientes-cadastrados {
+      margin-top: 40px;
+    }
+    h2 {
+      color: #2c3e50;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 10px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 12px;
+      text-align: left;
+    }
+    th {
+      background-color: #3498db;
+      color: white;
+      font-weight: 600;
+    }
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+    tr:hover {
+      background-color: #e9f7fe;
+    }
+    .actions {
+      display: flex;
+      gap: 5px;
+    }
+    .edit-btn, .delete-btn {
+      padding: 5px 10px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    .edit-btn {
+      background-color: #f39c12;
+      color: white;
+      border: none;
+    }
+    .delete-btn {
+      background-color: #e74c3c;
+      color: white;
+      border: none;
+    }
+    .no-data {
+      text-align: center;
+      padding: 20px;
+      color: #7f8c8d;
+      font-style: italic;
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Cadastro de Clientes</h1>
-        
-        <form id="cadastroForm">
-            <div class="form-group">
-                <label for="nome">Nome Completo:</label>
-                <input type="text" id="nome" name="nome" required placeholder="Digite o nome completo do cliente">
-            </div>
-            
-            <div class="form-group">
-                <label for="whatsapp">WhatsApp:</label>
-                <input type="tel" id="whatsapp" name="whatsapp" required placeholder="(00) 00000-0000">
-            </div>
-            
-            <div class="form-group">
-                <label for="dataContato">Data de Contato:</label>
-                <input type="date" id="dataContato" name="dataContato" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="tipoImovel">Tipo de Imóvel Procurado:</label>
-                <select id="tipoImovel" name="tipoImovel" required>
-                    <option value="">Selecione o tipo de imóvel...</option>
-                    <option value="Casa">Casa</option>
-                    <option value="Apartamento">Apartamento</option>
-                    <option value="Terreno">Terreno</option>
-                    <option value="Sala Comercial">Sala Comercial</option>
-                    <option value="Galpão">Galpão</option>
-                    <option value="Chácara">Chácara</option>
-                    <option value="Fazenda">Fazenda</option>
-                    <option value="Cobertura">Cobertura</option>
-                    <option value="Kitnet">Kitnet</option>
-                    <option value="Outro">Outro</option>
-                </select>
-            </div>
-            
-            <button type="submit">Cadastrar Cliente</button>
-        </form>
-        
-        <div class="clientes-cadastrados">
-            <h2>Clientes Cadastrados</h2>
-            <table id="tabelaClientes">
-                <thead>
-                    <tr>
-                        <th>Nome</th>
-                        <th>WhatsApp</th>
-                        <th>Data Contato</th>
-                        <th>Tipo de Imóvel</th>
-                        <th>Ações</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Dados serão inseridos via JavaScript -->
-                </tbody>
-            </table>
-            <div id="semDados" class="no-data">Nenhum cliente cadastrado.</div>
-        </div>
-    </div>
+  <div class="container">
+    <h1>Cadastro de Clientes</h1>
+    <form id="cadastroForm">
+      <div class="form-group">
+        <label for="nome">Nome Completo:</label>
+        <input type="text" id="nome" name="nome" required placeholder="Digite o nome completo do cliente">
+      </div>
+      <div class="form-group">
+        <label for="whatsapp">WhatsApp:</label>
+        <input type="tel" id="whatsapp" name="whatsapp" required placeholder="(00) 00000-0000">
+      </div>
+      <div class="form-group">
+        <label for="dataContato">Data de Contato:</label>
+        <input type="date" id="dataContato" name="dataContato" required>
+      </div>
+      <div class="form-group">
+        <label for="tipoImovel">Tipo de Imóvel Procurado:</label>
+        <select id="tipoImovel" required>
+          <option value="">Selecione o tipo de imóvel...</option>
+          <option value="Casa">Casa</option>
+          <option value="Apartamento">Apartamento</option>
+          <option value="Terreno">Terreno</option>
+          <option value="Sala Comercial">Sala Comercial</option>
+          <option value="Galpão">Galpão</option>
+          <option value="Chácara">Chácara</option>
+          <option value="Fazenda">Fazenda</option>
+          <option value="Cobertura">Cobertura</option>
+          <option value="Kitnet">Kitnet</option>
+          <option value="Outro">Outro</option>
+        </select>
+      </div>
+      <button type="submit">Cadastrar Cliente</button>
+    </form>
 
-    <script src="script.js"></script>
+    <div class="clientes-cadastrados">
+      <h2>Clientes Cadastrados</h2>
+      <table id="tabelaClientes">
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>WhatsApp</th>
+            <th>Data de Contato</th>
+            <th>Tipo de Imóvel</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+      <div id="semDados" class="no-data">Nenhum cliente cadastrado.</div>
+    </div>
+  </div>
+
+  <script>
+    function formatarData(data) {
+      const [ano, mes, dia] = data.split("-");
+      return `${dia}/${mes}/${ano}`;
+    }
+
+    document.getElementById("whatsapp").addEventListener("input", function(e) {
+      let valor = e.target.value.replace(/\D/g, "");
+      if (valor.length > 11) valor = valor.substring(0, 11);
+      if (valor.length > 0) {
+        valor = valor.replace(/^(\d{2})(\d)/g, "($1) $2");
+        valor = valor.replace(/(\d{5})(\d)/, "$1-$2");
+      }
+      e.target.value = valor;
+    });
+
+    document.addEventListener("DOMContentLoaded", function() {
+      const hoje = new Date();
+      document.getElementById("dataContato").value = hoje.toISOString().substr(0, 10);
+      carregarClientes();
+    });
+
+    function carregarClientes() {
+      const clientes = JSON.parse(localStorage.getItem("clientes")) || [];
+      const tabela = document.querySelector("#tabelaClientes tbody");
+      const semDados = document.getElementById("semDados");
+
+      tabela.innerHTML = "";
+
+      if (clientes.length === 0) {
+        semDados.style.display = "block";
+        return;
+      }
+
+      semDados.style.display = "none";
+
+      clientes.forEach((cliente, index) => {
+        const novaLinha = tabela.insertRow();
+        novaLinha.insertCell(0).textContent = cliente.nome;
+        novaLinha.insertCell(1).textContent = cliente.whatsapp;
+        novaLinha.insertCell(2).textContent = formatarData(cliente.dataContato);
+        novaLinha.insertCell(3).textContent = cliente.tipoImovel;
+
+        const cellAcoes = novaLinha.insertCell(4);
+        cellAcoes.className = "actions";
+
+        const btnEditar = document.createElement("button");
+        btnEditar.className = "edit-btn";
+        btnEditar.textContent = "Editar";
+        btnEditar.onclick = function () {
+          editarCliente(index);
+        };
+
+        const btnExcluir = document.createElement("button");
+        btnExcluir.className = "delete-btn";
+        btnExcluir.textContent = "Excluir";
+        btnExcluir.onclick = function () {
+          excluirCliente(index);
+        };
+
+        cellAcoes.appendChild(btnEditar);
+        cellAcoes.appendChild(btnExcluir);
+      });
+    }
+
+    function editarCliente(index) {
+      const clientes = JSON.parse(localStorage.getItem("clientes")) || [];
+      const cliente = clientes[index];
+
+      document.getElementById("nome").value = cliente.nome;
+      document.getElementById("whatsapp").value = cliente.whatsapp;
+      document.getElementById("dataContato").value = cliente.dataContato;
+      document.getElementById("tipoImovel").value = cliente.tipoImovel;
+
+      clientes.splice(index, 1);
+      localStorage.setItem("clientes", JSON.stringify(clientes));
+      carregarClientes();
+    }
+
+    function excluirCliente(index) {
+      if (confirm("Tem certeza que deseja excluir este cliente?")) {
+        const clientes = JSON.parse(localStorage.getItem("clientes")) || [];
+        clientes.splice(index, 1);
+        localStorage.setItem("clientes", JSON.stringify(clientes));
+        carregarClientes();
+      }
+    }
+
+    document.getElementById("cadastroForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const cliente = {
+        nome: document.getElementById("nome").value,
+        whatsapp: document.getElementById("whatsapp").value,
+        dataContato: document.getElementById("dataContato").value,
+        tipoImovel: document.getElementById("tipoImovel").value
+      };
+
+      const clientes = JSON.parse(localStorage.getItem("clientes")) || [];
+      clientes.push(cliente);
+      localStorage.setItem("clientes", JSON.stringify(clientes));
+
+      document.getElementById("cadastroForm").reset();
+
+      const hoje = new Date();
+      document.getElementById("dataContato").value = hoje.toISOString().substr(0, 10);
+
+      carregarClientes();
+    });
+  </script>
 </body>
 </html>
